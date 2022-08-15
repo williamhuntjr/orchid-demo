@@ -1,0 +1,9 @@
+<div class="cameraDashboardContainer">
+  <div *ngFor="let camera of cameras">
+    <camera-card
+      [cameraName]="camera.name"
+      [cameraId]="camera.id"
+      [streamId]="camera.primaryStream.id"
+    ></camera-card>
+  </div>
+</div>

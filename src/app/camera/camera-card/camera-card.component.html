@@ -1,0 +1,5 @@
+<div class="cameraCardContainer" *ngIf="!isLoading">
+  <img *ngIf="blobData.size > 0" [src]="blobUrl" alt="" class="cameraCardImage">
+  <h3 class="cameraCardHeadline">{{cameraName}}</h3>
+  <p class="cameraCardText">Status: {{isFetching ? 'Refreshing' : blobData.size == 0 && !isFetching && !isLoading ? 'Offline' : 'Loaded'}}</p>
+</div>

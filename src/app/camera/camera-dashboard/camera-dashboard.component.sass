@@ -1,0 +1,15 @@
+@import 'src/assets/sass/variables'
+
+.cameraDashboardContainer 
+  min-height: calc(100vh - #{$headerHeight} - 100px)
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-wrap: wrap
+  padding: 50px
+
+  @media screen and (max-width: 768px) 
+    width: 100%
+    padding: 0
+    div
+      width: 100%

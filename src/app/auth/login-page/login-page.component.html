@@ -1,0 +1,26 @@
+<div class="loginPageContainer">
+  <div class="loginPageFormContainer">
+    <h1 class="loginPageHeadline">Welcome to Orchid Demo</h1>
+    <h3 class="loginPageSubHeadline">Enter your credentials below to access our feed</h3>
+    <form [formGroup]="loginForm">
+      <mat-form-field appearance="fill" class="loginPageFormField">
+        <mat-label>Username</mat-label>
+        <input 
+          matInput 
+          required
+          formControlName="username"
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="loginPageFormField">
+        <mat-label>Password</mat-label>
+        <input 
+          type="password" 
+          matInput 
+          required
+          formControlName="password"
+        >
+      </mat-form-field>
+      <button type="submit" mat-flat-button color="primary" class="loginPageButton" (click)="onSubmit()">Login</button>
+    </form>
+  </div>
+</div>

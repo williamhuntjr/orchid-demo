@@ -1,0 +1,35 @@
+@import 'src/assets/sass/variables'
+
+$loginPageContainerWidth: 450px
+$loginPageButtonWidth: 200px
+
+.loginPageContainer 
+  width: 100%
+  min-height: calc(100vh - #{$headerHeight})
+  display: flex
+  align-items: center
+  justify-content: center
+
+.loginPageFormContainer 
+  width: 100%
+  max-width: $loginPageContainerWidth
+  display: flex
+  flex-direction: column
+
+.loginPageFormField
+  width: 100%
+  max-width: $loginPageContainerWidth
+  margin: 0 auto 0 auto
+
+.loginPageButton
+  display: block
+  width: 100%
+  max-width: $loginPageButtonWidth
+  margin: 0 auto 0 auto
+  
+.loginPageHeadline
+  font-weight: bold
+  margin: 0 0 10px 0
+
+.loginPageHeadline, .loginPageSubHeadline
+  text-align: center

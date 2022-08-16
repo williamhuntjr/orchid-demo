@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
-import { CameraService } from 'src/app/camera/camera.service'
+import { CameraService } from 'src/app/camera/camera.service';
 
 @Component({
   selector: 'camera-card',

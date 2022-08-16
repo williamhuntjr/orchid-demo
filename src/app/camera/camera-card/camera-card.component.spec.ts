@@ -1,11 +1,13 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { of } from 'rxjs';
 import { httpClientToken, AxiosHttpClient } from 'src/common/http-client';
-
 import { CameraCardComponent } from './camera-card.component';
 
 describe('CameraCardComponent', () => {
   let component: CameraCardComponent;
+  let debugElement: DebugElement;
   let fixture: ComponentFixture<CameraCardComponent>;
 
   beforeEach(async () => {
@@ -18,8 +20,22 @@ describe('CameraCardComponent', () => {
     .compileComponents();
 
     fixture = TestBed.createComponent(CameraCardComponent);
+
+    debugElement = fixture.debugElement;
     component = fixture.componentInstance;
-    fixture.detectChanges();
+  });
+
+  it('should call fetchImage', async () => {
+
+    component.streamId = 1
+    let expected = new Blob()
+
+    fixture.detectChanges();  // onInit()
+
+    const cameraService = jasmine.createSpyObj('CameraService', ['getFrame']);
+    cameraService.getFrame.and.returnValue(of(expected));
+
+    expect(component.blobData instanceof Blob).toBeTrue();
   });
 
   it('should create', () => {

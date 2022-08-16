@@ -1,6 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
+import { fakeAsync, TestBed } from '@angular/core/testing';
 import { httpClientToken, AxiosHttpClient } from 'src/common/http-client';
+
+import { ICamera } from './camera.types';
 import { CameraService } from './camera.service';
 
 describe('CameraService', () => {
@@ -35,19 +36,15 @@ describe('#getFrame', () => {
     service = new CameraService(httpClientSpy);
   });
 
-  it('returns expected data', async function () {
+  it('returns expected data', async() => {
     // Create your test data
     const expected = new Blob([])
-
-    // This mocks the return from httpClient so that you're not making an actual network call.
-    // That helps to isolate your test and reduce flakiness
     httpClientSpy.get.and.returnValue(new Promise((resolve) => resolve(expected)));
 
-    // Call the method you're wanting to test. The parameter doesn't matter. Just pick a number
     const actual = await service.getFrame(1);
 
     // Make assertions on the result
-    expect(actual instanceof Blob).toEqual(expected instanceof Blob);
+    expect(actual).toEqual(expected);
     expect(httpClientSpy.get.calls.count()).toBe(1);
   });
 });
@@ -64,25 +61,31 @@ describe('#getCameras', () => {
     service = new CameraService(httpClientSpy);
   });
 
-  it("should retrieve list of cameras in an array", async () => {
-    const expected = [
-      {id: 0, name: 'Camera 1', primaryStream: {id: 0, href: ''}},
-      {id: 1, name: 'Camera 2', primaryStream: {id: 1, href: ''}}
-    ]
-  
-    httpClientSpy.get.and.returnValue(new Promise((resolve) => resolve(expected)));
-  
+  it('should retrieve list of cameras in an array', async () => {
+    const expected = {
+      data: {
+        cameras: [
+          { id: 0, name: 'Camera 1', primaryStream: { id: 0, href: '' } },
+          { id: 1, name: 'Camera 2', primaryStream: { id: 1, href: '' } },
+        ],
+      },
+    };
+
+    httpClientSpy.get.and.returnValue(
+      new Promise((resolve) => resolve(expected))
+    );
+
     const actual = await service.getCameras();
-  
+
     actual.forEach((camera) => {
       expect(camera.id).toBeDefined();
       expect(camera.name).toBeDefined();
       expect(camera.primaryStream).toBeDefined();
-      expect(typeof(camera.id)).toBe('number');
-      expect(typeof(camera.name)).toBe('string');
-      expect(typeof(camera.primaryStream)).toBe('object');
-    })
-  
-    expect(actual).toEqual(expected);
+      expect(typeof camera.id).toBe('number');
+      expect(typeof camera.name).toBe('string');
+      expect(typeof camera.primaryStream).toBe('object');
+    });
+
+    expect(actual).toEqual(expected.data.cameras);
   });
 });

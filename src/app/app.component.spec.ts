@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { MatMenuModule } from '@angular/material/menu';
+
 import { httpClientToken, AxiosHttpClient } from 'src/common/http-client';
 
 import { AppComponent } from './app.component';
@@ -11,7 +13,8 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatMenuModule
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
@@ -20,7 +23,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         { provide: httpClientToken, useValue: AxiosHttpClient },
-      ]
+      ],
     }).compileComponents();
   });
   it('should create the app', () => {

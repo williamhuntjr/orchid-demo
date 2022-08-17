@@ -1,6 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { MatIcon } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { httpClientToken, AxiosHttpClient } from 'src/common/http-client';
 
@@ -18,7 +20,8 @@ describe('HeaderComponent', () => {
       ],
       providers: [
         { provide: httpClientToken, useValue: AxiosHttpClient },
-      ]
+      ],
+      imports: [MatMenuModule]
     })
     .compileComponents();
 

@@ -1,7 +1,18 @@
 <mat-toolbar color="primary" class="headerContainer">
   <span>Orchid Demo</span>
   <span class="headerMenuButtonSpacer"></span>
-  <button mat-icon-button aria-label="Example icon-button with menu icon" [ngClass]="{ 'headerMenuButtonHidden' : currentUser == '' || currentUser == null }">
+
+  <button mat-icon-button aria-label="Navigation Menu" [matMenuTriggerFor]="menu" [ngClass]="{ 'headerMenuButtonHidden' : currentUser == '' || currentUser == null }">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item disabled>
+    <span>Hi, {{this.currentUser}}</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item routerLink="/logout">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
